@@ -1,6 +1,17 @@
 # Better Streaming Assets
 
-Better Streaming Assets is a plugin that lets you access Streaming Assets directly in an uniform and thread-safe way, with tiny overhead. Mostly beneficial for Android projects, where the alternatives are to use archaic and hugely inefficient WWW or embed data in Asset Bundles. API is based on Syste.IO.File and System.IO.Directory classes.
+Better Streaming Assets is a plugin that lets you access Streaming Assets directly in an uniform and thread-safe way, with tiny overhead. Mostly beneficial for Android projects, where the alternatives are to use archaic and hugely inefficient WWW or embed data in Asset Bundles. API is based on
+Syste.IO.File and System.IO.Directory classes.
+
+# 使用方式(三种方式)
+
+1. 直接在 `manifest.json` 文件中添加以下内容
+   ```json
+      {"com.alianblank.gameframex.unity.gwiazdorrr.betterstreamingassets": "https://github.com/AlianBlank/com.alianblank.gameframex.unity.gwiazdorrr.betterstreamingassets.git"}
+    ```
+2. 在Unity 的`Packages Manager` 中使用`Git URL` 的方式添加库,地址为：https://github.com/AlianBlank/com.alianblank.gameframex.unity.gwiazdorrr.betterstreamingassets.git
+
+3. 直接下载仓库放置到Unity 项目的`Packages` 目录下。会自动加载识别
 
 # Note on Android & App Bundles
 
@@ -9,6 +20,7 @@ App Bundles (.aab) builds are bugged when it comes to Streaming Assets. See http
 ⚠️ **Keep all file names in Streaming Assets lowercase!** ⚠️
 
 Also, based on local tests with Unity 2020.3, using non-ASCII characters may result in a Streaming Assets file being compressed if one of the following is true:
+
 - extension contains non-ASCII characters
 - the file is extension-less, but contains non-ASCII characters in its path
 
@@ -21,6 +33,7 @@ There is currently no support for WebGL. It would require a different approach a
 # Getting started
 
 This plugin can be installed in following ways:
+
 * Select "Add package from git URL..." in the Unity Package Manager and use this URL: `https://github.com/gwiazdorrr/BetterStreamingAssets.git`
 * Clone this repository and copy `Runtime` directory to your project.
 * Download the latest release from the [Asset Store](https://assetstore.unity.com/packages/tools/input-management/better-streaming-assets-103788).
@@ -99,7 +112,7 @@ using (var stream = BetterStreamingAssets.OpenRead("Foo/bar.data"))
     stream.Read(footer, 0, footer.Length);
 }
 ```
-    
+
 Asset bundles (again, main thread only):
 
 ```csharp
@@ -111,7 +124,8 @@ var bundleOp = BetterStreamingAssets.LoadAssetBundleAsync(path);
 
 # (Android) False-positive compressed Streaming Assets messages
 
-Streaming Assets end up in the same part of APK as files added by many custom plugins (`assets` directory), so it is impossible to tell whether a compressed file is a Streaming Asset (an indication something has gone terribly wrong) or not. This tool acts conservatively and logs errors whenever it finds a compressed file inside of `assets`, but outside of `assets/bin`. If you are annoyed by this and are certain a compressed file was not meant to be a Streaming Asset, add a file like this in the same assembly as Better Streaming Assets:
+Streaming Assets end up in the same part of APK as files added by many custom plugins (`assets` directory), so it is impossible to tell whether a compressed file is a Streaming Asset (an indication something has gone terribly wrong) or not. This tool acts conservatively and logs errors whenever it
+finds a compressed file inside of `assets`, but outside of `assets/bin`. If you are annoyed by this and are certain a compressed file was not meant to be a Streaming Asset, add a file like this in the same assembly as Better Streaming Assets:
 
 ```csharp
 partial class BetterStreamingAssets
