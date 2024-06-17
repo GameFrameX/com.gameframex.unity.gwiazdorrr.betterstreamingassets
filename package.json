@@ -1,7 +1,9 @@
 {
-    "name": "com.alianblank.gameframex.unity.gwiazdorrr.betterstreamingassets",
+    "name": "com.gameframex.unity.gwiazdorrr.betterstreamingassets",
     "displayName": "Better Streaming Assets",
-    "author": { "name": "Piotr Gwiazdowski" },
+    "author": { 
+      "name": "Piotr Gwiazdowski" 
+    },
     "version": "1.7.0",
     "documentationUrl": "https://github.com/gwiazdorrr/BetterStreamingAssets",
     "changelogUrl": "https://github.com/gwiazdorrr/BetterStreamingAssets",
