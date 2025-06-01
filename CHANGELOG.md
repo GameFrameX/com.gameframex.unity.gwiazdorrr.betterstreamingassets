@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.7.2](https://github.com/GameFrameX/com.gameframex.unity.gwiazdorrr.betterstreamingassets/tree/1.7.2) (2025-06-01)
+
+[Full Changelog](https://github.com/GameFrameX/com.gameframex.unity.gwiazdorrr.betterstreamingassets/compare/1.7.1...1.7.2)
+
 ## [1.7.1](https://github.com/GameFrameX/com.gameframex.unity.gwiazdorrr.betterstreamingassets/tree/1.7.1) (2025-05-31)
 
 [Full Changelog](https://github.com/GameFrameX/com.gameframex.unity.gwiazdorrr.betterstreamingassets/compare/1.7.0...1.7.1)
