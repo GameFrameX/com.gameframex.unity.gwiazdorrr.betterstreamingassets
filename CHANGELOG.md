@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/gameframex/com.gameframex.unity.gwiazdorrr.betterstreamingassets/compare/1.7.2...1.8.0) (2025-12-23)
+
+
+### Features
+
+* **ci:** change ci ([8fb6c10](https://github.com/gameframex/com.gameframex.unity.gwiazdorrr.betterstreamingassets/commit/8fb6c106090efdc16f7a7f91f2259c2bcb6d625a))
+
 # Changelog
 
 ## [1.7.2](https://github.com/GameFrameX/com.gameframex.unity.gwiazdorrr.betterstreamingassets/tree/1.7.2) (2025-06-01)
