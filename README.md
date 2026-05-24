@@ -1,66 +1,54 @@
+<div align="center">
+  <img src="https://download.alianblank.com/gameframex/gameframex_logo_320.png" alt="Game Frame X Logo" width="160" />
+</div>
+
 # Better Streaming Assets
 
-Better Streaming Assets is a plugin that lets you access Streaming Assets directly in an uniform and thread-safe way, with tiny overhead. Mostly beneficial for Android projects, where the alternatives are to use archaic and hugely inefficient WWW or embed data in Asset Bundles. API is based on
-Syste.IO.File and System.IO.Directory classes.
+[![GitHub release](https://img.shields.io/github/v/release/GameFrameX/com.gameframex.unity.gwiazdorrr.betterstreamingassets?style=flat-square)](https://github.com/GameFrameX/com.gameframex.unity.gwiazdorrr.betterstreamingassets/releases)
+[![License](https://img.shields.io/github/license/GameFrameX/com.gameframex.unity.gwiazdorrr.betterstreamingassets?style=flat-square)](https://github.com/GameFrameX/com.gameframex.unity.gwiazdorrr.betterstreamingassets/blob/main/LICENSE)
+[![Documentation](https://img.shields.io/badge/Documentation-Online-blue?style=flat-square)](https://gameframex.doc.alianblank.com)
 
-# 使用方式(三种方式)
+**All-in-One Solution for Indie Game Development · Empowering Indie Developers' Dreams**
 
-1. 直接在 `manifest.json` 文件中添加以下内容
+[Documentation](https://gameframex.doc.alianblank.com) · [Quick Start](#quick-start) · [QQ Group](https://qm.qq.com/q/5s5e1e6e6e)
+
+**Language**: **English** | [简体中文](README.zh-CN.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
+
+---
+
+## Project Overview
+
+Better Streaming Assets is a plugin that lets you access Streaming Assets directly in an uniform and thread-safe way, with tiny overhead. Mostly beneficial for Android projects, where the alternatives are to use archaic and hugely inefficient WWW or embed data in Asset Bundles. API is based on System.IO.File and System.IO.Directory classes.
+
+## Quick Start
+
+### Installation
+
+Choose one of the following methods:
+
+1. Add the following to the `dependencies` section in your project's `manifest.json`:
    ```json
-      {"com.gameframex.unity.gwiazdorrr.betterstreamingassets": "https://github.com/AlianBlank/com.gameframex.unity.gwiazdorrr.betterstreamingassets.git"}
-    ```
-2. 在Unity 的`Packages Manager` 中使用`Git URL` 的方式添加库,地址为：https://github.com/AlianBlank/com.gameframex.unity.gwiazdorrr.betterstreamingassets.git
+   {"com.gameframex.unity.gwiazdorrr.betterstreamingassets": "https://github.com/AlianBlank/com.gameframex.unity.gwiazdorrr.betterstreamingassets.git"}
+   ```
 
-3. 直接下载仓库放置到Unity 项目的`Packages` 目录下。会自动加载识别
+2. Use `Git URL` in Unity's Package Manager:
+   ```
+   https://github.com/AlianBlank/com.gameframex.unity.gwiazdorrr.betterstreamingassets.git
+   ```
 
-# Note on Android & App Bundles
+3. Download the repository and place it in your Unity project's `Packages` directory. It will be loaded automatically.
 
-App Bundles (.aab) builds are bugged when it comes to Streaming Assets. See https://github.com/gwiazdorrr/BetterStreamingAssets/issues/10 for details. The bottom line is:
+## Usage Examples
 
-⚠️ **Keep all file names in Streaming Assets lowercase!** ⚠️
-
-Also, based on local tests with Unity 2020.3, using non-ASCII characters may result in a Streaming Assets file being compressed if one of the following is true:
-
-- extension contains non-ASCII characters
-- the file is extension-less, but contains non-ASCII characters in its path
-
-⚠️ **Do not use non-ASCII characters in file names** ⚠️
-
-# Note on WebGL
-
-There is currently no support for WebGL. It would require a different approach and a completely async API.
-
-# Getting started
-
-This plugin can be installed in following ways:
-
-* Select "Add package from git URL..." in the Unity Package Manager and use this URL: `https://github.com/gwiazdorrr/BetterStreamingAssets.git`
-* Clone this repository and copy `Runtime` directory to your project.
-* Download the latest release from the [Asset Store](https://assetstore.unity.com/packages/tools/input-management/better-streaming-assets-103788).
-
-# Usage
-
-Check examples below. Note that all the paths are relative to StreamingAssets directory. That is, if you have files
-
-```
-<project>/Assets/StreamingAssets/foo.bar
-<project>/Assets/StreamingAssets/dir/foo.bar
-````
-
-You are expected to use following paths:
-
-```
-foo.bar (or /foo.bar)
-dir/foo.bar (or /dir/foo.bar)
-```
-
-# Examples
+### Initialization
 
 Initialization (before first use, needs to be called on main thread):
 
 ```csharp
 BetterStreamingAssets.Initialize();
 ```
+
+### Reading Files
 
 Typical scenario, deserializing from Xml:
 
@@ -83,22 +71,22 @@ public static Foo ReadFromXml(string path)
 
 Note that ReadFromXml can be called from any thread, as long as Foo's constructor doesn't make any UnityEngine calls.
 
-Listing all Streaming Assets in with .xml extension:
+### Listing Files
 
 ```csharp
 // all the xmls
-string[] paths = BetterStreamingAssets.GetFiles("\\", "*.xml", SearchOption.AllDirectories); 
+string[] paths = BetterStreamingAssets.GetFiles("\\", "*.xml", SearchOption.AllDirectories);
 // just xmls in Config directory (and nested)
-string[] paths = BetterStreamingAssets.GetFiles("Config", "*.xml", SearchOption.AllDirectories); 
+string[] paths = BetterStreamingAssets.GetFiles("Config", "*.xml", SearchOption.AllDirectories);
 ```
 
-Checking if a directory exists:
+### Checking Directories
 
 ```csharp
 Debug.Assert( BetterStreamingAssets.DirectoryExists("Config") );
 ```
 
-Ways of reading a file:
+### Reading Data
 
 ```csharp
 // all at once
@@ -113,7 +101,7 @@ using (var stream = BetterStreamingAssets.OpenRead("Foo/bar.data"))
 }
 ```
 
-Asset bundles (again, main thread only):
+### Asset Bundles
 
 ```csharp
 // synchronous
@@ -122,10 +110,22 @@ var bundle = BetterStreamingAssets.LoadAssetBundle(path);
 var bundleOp = BetterStreamingAssets.LoadAssetBundleAsync(path);
 ```
 
-# (Android) False-positive compressed Streaming Assets messages
+## Platform Notes
 
-Streaming Assets end up in the same part of APK as files added by many custom plugins (`assets` directory), so it is impossible to tell whether a compressed file is a Streaming Asset (an indication something has gone terribly wrong) or not. This tool acts conservatively and logs errors whenever it
-finds a compressed file inside of `assets`, but outside of `assets/bin`. If you are annoyed by this and are certain a compressed file was not meant to be a Streaming Asset, add a file like this in the same assembly as Better Streaming Assets:
+### Android & App Bundles
+
+App Bundles (.aab) builds are bugged when it comes to Streaming Assets. The bottom line is:
+
+- Keep all file names in Streaming Assets lowercase!
+- Do not use non-ASCII characters in file names
+
+### WebGL
+
+There is currently no support for WebGL. It would require a different approach and a completely async API.
+
+### Android False-positive Compressed Streaming Assets Messages
+
+Streaming Assets end up in the same part of APK as files added by many custom plugins (`assets` directory), so it is impossible to tell whether a compressed file is a Streaming Asset or not. This tool acts conservatively and logs errors whenever it finds a compressed file inside of `assets`, but outside of `assets/bin`. If you are annoyed by this and are certain a compressed file was not meant to be a Streaming Asset, add a file like this in the same assembly as Better Streaming Assets:
 
 ```csharp
 partial class BetterStreamingAssets
@@ -139,3 +139,13 @@ partial class BetterStreamingAssets
     }
 }
 ```
+
+## Documentation & Resources
+
+- Documentation: https://gameframex.doc.alianblank.com
+- Repository: https://github.com/GameFrameX/com.gameframex.unity.gwiazdorrr.betterstreamingassets
+- Original Project: https://github.com/gwiazdorrr/BetterStreamingAssets
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](https://github.com/gwiazdorrr/BetterStreamingAssets/blob/master/LICENSE) for details.
