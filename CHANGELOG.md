@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/gameframex/com.gameframex.unity.gwiazdorrr.betterstreamingassets/compare/1.8.0...1.8.1) (2026-05-28)
+
+
+### Bug Fixes
+
+* **ci:** 统一 .github 工作流配置 ([87f836a](https://github.com/gameframex/com.gameframex.unity.gwiazdorrr.betterstreamingassets/commit/87f836a492634a329026df4576a1aab4df656568))
+
 # [1.8.0](https://github.com/gameframex/com.gameframex.unity.gwiazdorrr.betterstreamingassets/compare/1.7.2...1.8.0) (2025-12-23)
 
 
